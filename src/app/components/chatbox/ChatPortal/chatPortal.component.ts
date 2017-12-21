@@ -1,22 +1,22 @@
 import { Component, OnInit } from "@angular/core";
 import { ChatService } from "../service/chatbox.service";
-import { NickNameService } from '../service/nickName.service';
+import { ChatPortalService } from '../service/chatPortal.service';
 import {Router} from '@angular/router';
 import {MessageService} from './../../messages/message.service';
 
 @Component({
-    selector: "nick-name",
-    templateUrl: "./nickName.component.html",
-    styleUrls: ["./nickName.component.css"]
+    selector: "chat-portal",
+    templateUrl: "./chatPortal.component.html",
+    styleUrls: ["./chatPortal.component.css"]
 })
 
-export class NickNameComponent {
+export class ChatPortalComponent {
     nickName: string;
     roomsList: string[];
     accessRoomsList: Boolean;
     errorMsg: string;
     charMsg: string;
-    constructor(private nickNameService: NickNameService,private router:Router,private messageService:MessageService) {
+    constructor(private chatPortalService: ChatPortalService,private router:Router,private messageService:MessageService) {
         this.nickName = "";
         this.roomsList = [];
         this.accessRoomsList = false;
@@ -35,17 +35,17 @@ export class NickNameComponent {
         //  this.roomsList.push(roomName);
         console.log("=====Rooms list=======");
         //console.log(this.roomsList);
-        this.nickNameService.createRoom(roomName);
+        this.chatPortalService.createRoom(roomName);
     }
     accessRoom(roomName:string){
         console.log("===room name==="+roomName);
         this.router.navigate(['/chatroom',roomName,this.nickName]);
     }
     ngOnInit() {
-        this.nickNameService.getRooms().subscribe(rooms => {
+        this.chatPortalService.getRooms().subscribe(rooms => {
             this.roomsList = rooms;
         });
-        this.nickNameService.AddNewRooms().subscribe(data => {
+        this.chatPortalService.AddNewRooms().subscribe(data => {
             console.log("inside new Rooms");
             console.log(data);
             if (data["error"]) {

@@ -119,16 +119,18 @@ img {
   position:relative;
   padding: 30px 30px 20px;
   height: 440px;
-  border-bottom: 2px solid white;
   overflow:auto;
+  border:none;
+  margin-bottom:0;
 }
-.chat-history .typing-note{
-  position: fixed;
-  bottom:100px;
-  margin-bottom: 5px;
-  font-size: 18px;
+.chat-notification{
+  margin-top:0;
+  height:30px;
+  font-size:20px;
   letter-spacing: 1px;
   color:#666;
+  padding-left:30px;
+  border-bottom:2px solid white;
 }
 .chat-history .message-data {
   margin-bottom: 15px; }

@@ -5,7 +5,7 @@ import { MessageService } from "./../../messages/message.service";
 
 @Component({
   selector: "chat-page",
-  templateUrl: "./chat.component1.html",
+  templateUrl: "./chat.component.html",
   styleUrls: [
     "./chat.component.css",
     "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -23,30 +23,28 @@ export class ChatComponent {
   isUserTyping: boolean = false;
   userTypeName: string;
   constructor(
-    private chatService: ChatService,
-    private route: ActivatedRoute,
-    private messageService: MessageService
-  ) {}
+    private chatService: ChatService, private route: ActivatedRoute, private messageService: MessageService) {
+  }
   keydownFunc(event: any) {
-    let typing=false;
+    let typing = false;
     let timeout;
-    let timeoutFunction=()=>{
-      typing=false;
-      this.chatService.userStoppedTyping(this.nickName,this.roomName);
+    let timeoutFunction = () => {
+      typing = false;
+      this.chatService.userStoppedTyping(this.nickName, this.roomName);
     }
     if (event.keyCode == 13) this.sendMessage();
-    else{
-      this.chatService.userIsTyping(this.nickName,this.roomName);      
-      if(!typing){
-        typing=true;
-        timeout=setTimeout(timeoutFunction,3000);
+    else {
+      this.chatService.userIsTyping(this.nickName, this.roomName);
+      if (!typing) {
+        typing = true;
+        timeout = setTimeout(timeoutFunction, 3000);
       }
-      else{
+      else {
         clearTimeout(timeout);
-        timeout=setTimeout(timeoutFunction,3000);
+        timeout = setTimeout(timeoutFunction, 3000);
       }
     }
-    
+
   }
   sendMessage() {
     let date = new Date();
@@ -84,15 +82,15 @@ export class ChatComponent {
       });
       console.log("Room Name param " + this.roomName);
     });
-    this.chatService.userTypingSignal().subscribe((username:string) => {
-       console.log("is typing");
-       console.log(username);
-         this.isUserTyping=true;
-         this.userTypeName=username;
+    this.chatService.userTypingSignal().subscribe((username: string) => {
+      console.log("is typing");
+      console.log(username);
+      this.isUserTyping = true;
+      this.userTypeName = username;
     });
-    this.chatService.userStoppedTypingSignal().subscribe(()=>{
+    this.chatService.userStoppedTypingSignal().subscribe(() => {
       console.log("user stopped typeing");
-      this.isUserTyping=false;
+      this.isUserTyping = false;
     })
   }
 

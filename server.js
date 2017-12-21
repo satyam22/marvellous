@@ -15,7 +15,7 @@ var api = require("./server/routes/api");
 var Room = require("./server/models/room");
 
 mongoose.connect(local_db_connection, { useMongoClient: true });
-mongoose.connection.on("error", function(error) {
+mongoose.connection.on("error", function (error) {
   if (error) throw error;
 });
 
@@ -26,7 +26,7 @@ app.use(bodyParser({ urlEncoded: false }));
 
 var allowedOrigins = "http://localhost:3000";
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", allowedOrigins);
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
@@ -41,17 +41,17 @@ app.use(function(req, res, next) {
 app.use("/api", api);
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
-let ioEvents = function(io) {
+let ioEvents = function (io) {
   logger.info("inside function ioevents");
-  io.on("connection", function(socket) {
+  io.on("connection", function (socket) {
     logger.info("socket io connection event");
-    socket.on("createRoom", function(title) {
+    socket.on("createRoom", function (title) {
       logger.info("socket io create room event");
-      Room.findOne({ title: new RegExp("^" + title + "$", "i") }, function(
+      Room.findOne({ title: new RegExp("^" + title + "$", "i") }, function (
         err,
         room
       ) {
@@ -64,7 +64,7 @@ let ioEvents = function(io) {
             error: "Error: Room title already exists"
           });
         } else {
-          Room.create({ title: title }, function(err, newRoom) {
+          Room.create({ title: title }, function (err, newRoom) {
             if (err) {
               console.log("error occured");
               console.log(err.toString());
@@ -75,21 +75,21 @@ let ioEvents = function(io) {
         }
       });
     });
-    socket.on("join user", function(data) {
+    socket.on("join user", function (data) {
       logger.info("socket io join user event");
-      Room.findOne({ title: data.room }, function(err, room) {
+      Room.findOne({ title: data.room }, function (err, room) {
         if (err) throw err;
         if (!room) {
           socket.emit("updateUsersList", { error: "Room doesn't exist" });
         } else {
-          Room.addUser(room, data.name, socket, function(err, newRoom) {
+          Room.addUser(room, data.name, socket, function (err, newRoom) {
             if (err) {
               logger.info("error occured while adding users");
               logger.info(err.toString());
               throw err;
             }
             socket.join(newRoom.id);
-            Room.getUsers(newRoom, data.name, function(err, users) {
+            Room.getUsers(newRoom, data.name, function (err, users) {
               logger.info("users in room" + users);
               socket.emit("updateUsersList", users);
             });
@@ -98,8 +98,8 @@ let ioEvents = function(io) {
       });
     });
 
-    socket.on("disconnect", function() {
-      Room.removeUser(socket, function(err, room, userId, cuntUserInRoom) {
+    socket.on("disconnect", function () {
+      Room.removeUser(socket, function (err, room, userId, cuntUserInRoom) {
         if (err) throw err;
         socket.leave(room.id);
         if (cuntUserInRoom === 1) {
@@ -108,27 +108,27 @@ let ioEvents = function(io) {
       });
     });
 
-    socket.on("newMessage", function(roomName, message) {
+    socket.on("newMessage", function (roomName, message) {
       console.log(
         "====inside send message====" + roomName + "::message::" + message
       );
-      Room.findOne({ title: roomName }, function(err, room) {
+      Room.findOne({ title: roomName }, function (err, room) {
         if (err) throw err;
         console.log("inside find");
         io.in(room.id).emit("addMessage", message);
       });
     });
-    socket.on("user is typing", function(userName, roomName) {
+    socket.on("user is typing", function (userName, roomName) {
       //console.log("====inside send message====" + roomName + "::message::" + message);
-      Room.findOne({ title: roomName }, function(err, room) {
+      Room.findOne({ title: roomName }, function (err, room) {
         if (err) throw err;
         console.log("inside user typing");
-        io.to(room.id).emit("user is typing",userName);
+        io.to(room.id).emit("user is typing", userName);
       });
     });
-    socket.on("user stopped typing", function(userName, roomName) {
+    socket.on("user stopped typing", function (userName, roomName) {
       //console.log("====inside send message====" + roomName + "::message::" + message);
-      Room.findOne({ title: roomName }, function(err, room) {
+      Room.findOne({ title: roomName }, function (err, room) {
         if (err) throw err;
         console.log("inside user typing");
         io.to(room.id).emit("user stopped typing");
@@ -138,24 +138,8 @@ let ioEvents = function(io) {
 };
 
 ioEvents(io);
-function dataStorage(message) {
-  console.log("=======message reached======" + message);
-  let storeData = { chatMessage: message, timestamp: new Date().getTime() };
-  console.log("store data" + JSON.stringify(storeData));
-  db.collection("chatroom-chat").save(storeData, (err, data) => {
-    if (err) {
-      console.log("error occured while saving data to database");
-      console.log(err);
-    }
-    console.log("data saved successfully");
-  });
-  db.collection("chatroom-chat").find({}, (err, data) => {
-    console.log("database data");
-    console.log(data);
-  });
-}
 
 let port = 5000;
-server.listen(port, function() {
+server.listen(port, function () {
   console.log("app is listening at port: " + port);
 });

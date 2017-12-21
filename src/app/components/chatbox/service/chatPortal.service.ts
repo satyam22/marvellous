@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import * as io from 'socket.io-client';
 @Injectable()
-export class NickNameService{
+export class ChatPortalService{
     private url:string;
     private socket:any;
     constructor(private http:HttpClient){

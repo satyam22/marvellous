@@ -2,11 +2,11 @@
 import {Routes} from '@angular/router';
 import {HeroesComponent} from './components/heroes/heroes.component';
 import {ChatComponent} from './components/chatbox/chat-component/chat.component';
-import {NickNameComponent} from './components/chatbox/nickName-component/nickName.component';
+import {ChatPortalComponent} from './components/chatbox/ChatPortal/chatPortal.component';
 
 
 export const routes:Routes=[
     {path:'',component:HeroesComponent},
-    {path: 'rooms',component:NickNameComponent},
+    {path: 'chatPortal',component:ChatPortalComponent},
     {path:'chatroom/:roomName/:nickName',component:ChatComponent}
 ];

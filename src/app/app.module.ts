@@ -7,18 +7,18 @@ import { AppComponent }  from './app.component';
 import {HeroesComponent} from './components/heroes/heroes.component';
 import {MessageComponent} from './components/messages/messages.component'
 import {ChatComponent} from './components/chatbox/chat-component/chat.component';
-import {NickNameComponent} from './components/chatbox/nickName-component/nickName.component';
+import {ChatPortalComponent} from './components/chatbox/ChatPortal/chatPortal.component';
 import {HeroService} from './components/heroes/hero.service';
 import {ChatService} from './components/chatbox/service/chatbox.service';
-import {NickNameService} from './components/chatbox/service/nickName.service';
+import {ChatPortalService} from './components/chatbox/service/chatPortal.service';
 import {MessageService} from './components/messages/message.service';
 import {RouterModule} from '@angular/router';
 import {routes} from './app-routing.module';
 
 @NgModule({
   imports:      [ HttpClientModule,BrowserModule,FormsModule,NgbModule.forRoot(),RouterModule.forRoot(routes)],
-  declarations: [ AppComponent,HeroesComponent,MessageComponent,ChatComponent,NickNameComponent],
+  declarations: [ AppComponent,HeroesComponent,MessageComponent,ChatComponent,ChatPortalComponent],
   bootstrap:    [ AppComponent ],
-  providers:[HeroService,MessageService,ChatService,NickNameService]
+  providers:[HeroService,MessageService,ChatService,ChatPortalService]
 })
 export class AppModule { }
