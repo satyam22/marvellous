@@ -8,11 +8,11 @@
     }
 }
 .messages {
-  width: 25%;
+  width: 15%;
   background: lightsteelblue;
   padding:15px;
   position:fixed;
-  top:10px;
+  top:55px;
   right:0;
   padding-right:24px;
   padding-top:3px; 

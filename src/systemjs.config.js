@@ -27,6 +27,7 @@
       'tslib': 'npm:tslib/tslib.js',
       // other libraries
       'rxjs':                      'npm:rxjs',
+
       "socket.io-client": 'npm:socket.io-client/dist/socket.io.js',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },
@@ -41,6 +42,14 @@
         }
       },
       rxjs: {
+        defaultExtension: 'js'
+      },
+      'angular2-in-memory-web-api': {
+        main: './index.js',
+        defaultExtension: 'js'
+      },
+      'angular2-emoji-picker': {
+        main: './index.js',
         defaultExtension: 'js'
       }
     }

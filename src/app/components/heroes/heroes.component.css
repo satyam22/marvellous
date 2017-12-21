@@ -6,10 +6,13 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  margin-left: 60px; }
+  margin-left: 90px; 
+  margin-bottom:70px;
+}
 
 .hero-name {
-  margin-top: 40px; }
+  margin-top: 40px; 
+}
 
 .hero-name label {
   font-size: 24px;
@@ -49,14 +52,17 @@
 
 .container {
   margin-top: 100px;
-  display: flex; }
+  display: flex; 
+}
 
 .container .heroes-list {
-  flex: 1;
-  border-right: 2px solid #aaa; }
+  flex:1;
+  border-right: 2px solid #aaa; 
+}
 
 .container .hero-details {
-  flex: 1; }
+  flex:1; 
+}
   .container .hero-details h2 {
     text-align: center;
     font-size: 20px;
