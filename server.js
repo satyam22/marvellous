@@ -56,18 +56,20 @@ let ioEvents = function (io) {
         room
       ) {
         if (err) {
-          logger.info("error occured in create room" + err);
+          logger.info("error occured in finding room from database" + err);
           throw err;
         }
-        if (room) {
+        else if (room) {
           socket.emit("updateRoomsList", {
             error: "Error: Room title already exists"
           });
-        } else {
+        } 
+        else {
           Room.create({ title: title }, function (err, newRoom) {
             if (err) {
               console.log("error occured");
-              console.log(err.toString());
+              logger.info("error occured in create room",err.toString());
+              throw err;
             }
             socket.emit("updateRoomsList", newRoom);
             socket.broadcast.emit("updateRoomsList", newRoom);
@@ -78,8 +80,11 @@ let ioEvents = function (io) {
     socket.on("join user", function (data) {
       logger.info("socket io join user event");
       Room.findOne({ title: data.room }, function (err, room) {
-        if (err) throw err;
-        if (!room) {
+        if (err){
+          logger.info("error occured in finding room from database" + err);
+          throw err;
+        }
+        else if (!room) {
           socket.emit("updateUsersList", { error: "Room doesn't exist" });
         } else {
           Room.addUser(room, data.name, socket, function (err, newRoom) {
@@ -113,7 +118,10 @@ let ioEvents = function (io) {
         "====inside send message====" + roomName + "::message::" + message
       );
       Room.findOne({ title: roomName }, function (err, room) {
-        if (err) throw err;
+        if (err){
+          logger.info("error occured in finding room from database" + err);
+          throw err;
+        }
         console.log("inside find");
         io.in(room.id).emit("addMessage", message);
       });

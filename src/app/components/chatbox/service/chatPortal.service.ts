@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {HttpClient} from '@angular/common/http';
 import * as io from 'socket.io-client';
-@Injectable()
+ @Injectable()
 export class ChatPortalService{
     private url:string;
     private socket:any;
@@ -28,5 +28,4 @@ export class ChatPortalService{
         });
         return observable;
     }
-    
 }

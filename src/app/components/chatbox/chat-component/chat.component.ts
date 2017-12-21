@@ -91,7 +91,7 @@ export class ChatComponent {
     this.chatService.userStoppedTypingSignal().subscribe(() => {
       console.log("user stopped typeing");
       this.isUserTyping = false;
-    })
+    });
   }
 
   ngOnDestroy() {
