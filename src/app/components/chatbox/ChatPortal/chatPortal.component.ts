@@ -57,7 +57,7 @@ export class ChatPortalComponent {
             else {
                 this.roomsList.push(data["title"]);
             }
-        })
+        });
     }
 
 }
