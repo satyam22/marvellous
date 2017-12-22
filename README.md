@@ -3,4 +3,10 @@ Angular2 App that shows data of Marvel heroes and let you share your views on th
 
 ### Motivation
 This App is created with the purpose of learning Angular2 concepts and put them into something real.apart from angular2 concepts this app showcase socket.io functionalities and express, mongodb for backend implementation.you will also find good use of CSS to make UI interactive.
-
+### Screenshots
+![Marvellous home page](/screenshots/marvellous_home.png)
+### Features
+### How to Use?
+### Built with
+### To-do
+### Licence
