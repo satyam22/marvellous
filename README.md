@@ -41,3 +41,4 @@ npm start
 ### To-do
 1. Add emoji picker in chatbox 
 ### Licence
+MIT © [Satyam Bansal](https://satyam22.github.io)
