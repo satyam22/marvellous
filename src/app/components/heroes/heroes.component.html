@@ -1,9 +1,14 @@
-<h1>{{title}}</h1>
-<div class="container">
-       
-    <div *ngIf="result.length">
-        <p *ngFor="let res of result">{{result}}</p>
+<div class="navbar">
+
+        <h1>{{title}}</h1>
+        <ul>
+            <li><a href="/chatPortal">Chat Portal</a></li>
+        </ul>
     </div>
+<div *ngIf="result.length">
+    <p *ngFor="let res of result">{{result}}</p>
+</div>
+<div class="container">
     <div class="heroes-list">
         <h2>My Heroes</h2>
         <ul class="heroes">

@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { ChatService } from "../service/chatbox.service";
 import { ActivatedRoute } from "@angular/router";
 import { MessageService } from "./../../messages/message.service";
-
 @Component({
   selector: "chat-page",
   templateUrl: "./chat.component.html",
