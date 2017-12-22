@@ -32,7 +32,7 @@ Start Angular app
 ```
 npm start
 ```
-**You will also need a mongodb server in running state to make this application work. without this server will throw an exception.there are tons of tutorial out there to help you run mondodb server.if you still face issue let me know by raising an issue on this repo.**
+**You will also need a mongodb server in running state to make this application work. without this, server will throw an exception.there are tons of tutorial out there to help you run mondodb server.if you still face issue let me know by raising an issue on this repo.**
 ### Built with
 * angular2
 * ES6
