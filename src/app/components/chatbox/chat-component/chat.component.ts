@@ -53,8 +53,6 @@ export class ChatComponent {
       date.getMinutes() +
       " " +
       (date.getHours() > 12 ? "am" : "pm");
-    console.log("========inside send message=====");
-    console.log(this.message);
     if (this.message.trim().length != 0) {
       this.msgObj.text = this.message;
       this.msgObj.sender = this.nickName;
@@ -67,8 +65,6 @@ export class ChatComponent {
     this.connection = this.chatService
       .getMessages()
       .subscribe((message: any) => {
-        console.log("=========received message======");
-        console.log(message);
         this.messages.push(message);
       });
     this.sub = this.route.params.subscribe(params => {
@@ -76,19 +72,14 @@ export class ChatComponent {
       this.nickName = params["nickName"];
       this.chatService.joinUser(this.roomName, this.nickName);
       this.chatService.getUsers().subscribe((users: string[]) => {
-        console.log("chat service:: users");
         this.currentUsers = users;
       });
-      console.log("Room Name param " + this.roomName);
     });
     this.chatService.userTypingSignal().subscribe((username: string) => {
-      console.log("is typing");
-      console.log(username);
       this.isUserTyping = true;
       this.userTypeName = username;
     });
     this.chatService.userStoppedTypingSignal().subscribe(() => {
-      console.log("user stopped typeing");
       this.isUserTyping = false;
     });
   }

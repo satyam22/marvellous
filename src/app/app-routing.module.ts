@@ -1,4 +1,3 @@
-//import {NgModule} from '@angular/core';
 import {Routes} from '@angular/router';
 import {HeroesComponent} from './components/heroes/heroes.component';
 import {ChatComponent} from './components/chatbox/chat-component/chat.component';

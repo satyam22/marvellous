@@ -11,7 +11,6 @@ export class ChatPortalService{
         this.socket=io(this.url);
     }
     createRoom(roomName:string){
-        console.log("===inside create room service");
         this.socket.emit('createRoom',roomName);
     }
     getRooms(){

@@ -5,16 +5,6 @@
             <i class="fa fa-search"></i>
         </div>
         <ul class="list">
-            <!-- <li class="clearfix">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar">
-                <div class="about">
-                    <div class="name">
-                        {{nickName}}
-                    </div>
-                    <div class="status">
-                        <i class="fa fa-circle online"></i>online</div>
-                </div>
-            </li> -->
             <li class="clearfix" *ngFor="let user of currentUsers">
                 <img src="http://via.placeholder.com/350x150" alt="avatar">
                 <div class="about">
@@ -48,22 +38,9 @@
                         {{message.text}}
                     </div>
                 </li>
-                <!-- <li class="clearfix">
-                        <div class="message-data">
-                            <span class="message-data-name">
-                                <i class="fa fa-circle online"> &nbsp;&nbsp;</i>Satyam
-                            </span>
-                            <span class="message-data-time">10:12 Am, Today</span>
-                        </div>
-                        <div class="message my-message">
-                            Hey Gopal,i'm doing awesome.you tell me something about you.
-                        </div>
-                    </li> -->
-                <!-- <li *ngFor="let message of messages">{{message}}</li> -->
             </ul>
         </div>
         <div class="chat-notification">
-            <!-- <span *ngIf="isUserTyping" class="typing-note">{{userTypeName}} is typing ...</span> -->
             {{isUserTyping?userTypeName+" is typing ...":""}}
         </div>
         <div class="chat-message clearfix">

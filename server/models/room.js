@@ -15,14 +15,11 @@ let findOne = function (data, callback) {
     roomModel.findOne(data, callback);
 }
 
-let deleteRoom=function (data, callback) {
-    if(data){
-        roomModel.remove({ title: data }, callback);        
-    }
-    else{
-        console.log("inside delete room");
-        roomModel.remove({},callback);
-    }
+let deleteRoom = function (data, callback) {
+    if (data)
+        roomModel.remove({ title: data }, callback);
+    else
+        roomModel.remove({}, callback);
 }
 
 let findById = function (id, callback) {
@@ -35,7 +32,6 @@ let addUser = function (room, userId, socket, callback) {
     room.save(callback);
 }
 let getUsers = function (room, userId, callback) {
-    console.log("inside getUsers function");
     let users = [];
     let vis = [];
 
@@ -53,8 +49,6 @@ let getUsers = function (room, userId, callback) {
             users[i] = user;
         })
     })
-    console.log("====users=====");
-    console.log(users);
     callback(null, users);
 }
 let removeUser = function (socket, callback) {
@@ -76,7 +70,6 @@ let removeUser = function (socket, callback) {
                 }
             });
             if (!pass) {
-                //   room.connections.id(room/connections[target]._id).remove();
                 room.save(function (err) {
                     callback(err, room, userId, cunt);
                 });

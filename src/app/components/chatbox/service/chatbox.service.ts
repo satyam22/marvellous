@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 import { HttpClient } from '@angular/common/http';
+
+
 @Injectable()
 export class ChatService {
     private url: string;
@@ -11,17 +13,14 @@ export class ChatService {
         this.socket = io(this.url);
     }
     sendMessage(roomId:string,msgObj:any) {
-        console.log("========inside send message chat service=====");
         this.socket.emit('newMessage',roomId,msgObj);
     }
     joinUser(roomName: string, nickName: string) {
-        console.log("join user service");
         this.socket.emit('join user',{room:roomName,name:nickName});
     }
     getMessages() {
         let observable = new Observable((observer: any) => {
             this.socket.on('addMessage', (data: any) => {
-                console.log("inside client new message");
                 observer.next(data);
             });
             return () => {
@@ -50,7 +49,6 @@ export class ChatService {
     userTypingSignal(){
         let observable=new Observable((observer:any)=>{
             this.socket.on('user is typing',(data:any)=>{
-                console.log("user is typing:::"+data);
                 observer.next(data);
             });
             return ()=>{
