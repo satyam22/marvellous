@@ -4,7 +4,7 @@ Angular2 App that shows data of Marvel heroes and let you share your views on th
 ### Motivation
 This App is created with the purpose of learning Angular2 concepts and put them into something real.apart from angular2 concepts this app showcase socket.io functionalities and express, mongodb for backend implementation.you will also find good use of CSS to make UI interactive.
 ### Screenshots
-<img src="/screenshots/marvellous_home.jpg" alt="Marvellous home page" width="100%" height="400px" /><img src="/screenshots/marvellous_chat_portal.jpg" alt="Marvellous chat portal" width="40%" height="400px" /><img src="/screenshots/marvellous_chat_room.jpg" alt="Marvellous chat room" width="60%" height="400px" />
+<img src="/screenshots/marvellous_home.jpg" alt="Marvellous home page" width="100%" height="400px" /><img src="/screenshots/marvellous_chat_portal.jpg" alt="Marvellous chat portal" width="100%" height="400px" /><img src="/screenshots/marvellous_chat_room.jpg" alt="Marvellous chat room" width="100%" height="400px" />
 
 
 
