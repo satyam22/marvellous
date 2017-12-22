@@ -15,7 +15,7 @@ export class HeroesComponent implements OnInit {
     result: string[] = [];
     title:string;
     constructor(private heroService: HeroService, private http: HttpClient,private messageService:MessageService) {
-        this.title="Tour of Heroes";
+        this.title="Marvellous";
     }
     onSelect(hero: Hero): void {
         this.selectedHero = hero;
